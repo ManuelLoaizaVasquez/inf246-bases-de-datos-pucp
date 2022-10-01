@@ -50,7 +50,70 @@ FROM user_col_comments;
 -- 2.4 Crear una tabla a partir de una seleccion de datos
 
 -- 2.5 Utilizacion de sinonimos
+
 CREATE SYNONYM cr_precio FOR cr_tarifa;
 
 SELECT *
 FROM cr_precio;
+
+-- 2.6 Las secuencias
+
+CREATE SEQUENCE numeros
+START WITH 5
+INCREMENT BY 1
+MINVALUE 2
+MAXVALUE 999999
+CYCLE;
+
+SELECT numeros.nextval
+FROM dual;
+
+SELECT numeros.currval
+FROM dual;
+
+CREATE TABLE cr_habitacion (
+  id_habitacion NUMBER(38, 0),
+  id_hotel NUMBER(38, 0),
+  id_tipo_habitacion NUMBER(38, 0),
+  numero VARCHAR2(6),
+  comentario VARCHAR2(400),
+  CONSTRAINT pk_habitacion PRIMARY_KEY (id_habitacion)
+);
+
+CREATE OR REPLACE TRIGGER tr_numeros
+BEFORE INSERT ON cr_habitacion
+FOR EACH ROW DECLARE
+  BEGIN
+    SELECT numeros.nextval
+    INTO:NEW.id_habitacion FROM dual;
+  END;
+
+INSERT INTO cr_habitacion (id_hotel, id_tipo_habitacion, numero, comentario)
+VALUES (2, 1, '2', NULL);
+
+INSERT INTO cr_habitacion (id_hotel, id_tipo_habitacion, numero, comentario)
+VALUES (2, 1, '2', NULL);
+
+INSERT INTO cr_habitacion(id_hotel, id_tipo_habitacion, numero, comentario)
+VALUES (2, 1, '2', NULL);
+
+ALTER SEQUENCE numeros
+MAXVALUE 100000;
+
+ALTER SEQUENCE numeros
+INCREMENT BY 5;
+
+INSERT INTO cr_habitacion (id_hotel, id_tipo_habitacion, numero, comentario)
+VALUES (2, 1, '2', NULL);
+
+INSERT INTO cr_habitacion (id_hotel, id_tipo_habitacion, numero, comentario)
+VALUES (2, 1, '2', NULL);
+
+INSERT INTO cr_habitacion(id_hotel, id_tipo_habitacion, numero, comentario)
+VALUES (2, 1, '2', NULL);
+
+SELECT *
+FROM cr_habitacion;
+
+DROP SEQUENCE numeros;
+
