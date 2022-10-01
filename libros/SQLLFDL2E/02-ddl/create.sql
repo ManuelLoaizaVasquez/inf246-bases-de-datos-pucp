@@ -46,3 +46,11 @@ FROM user_tab_comments;
 
 SELECT *
 FROM user_col_comments;
+
+-- 2.4 Crear una tabla a partir de una seleccion de datos
+
+-- 2.5 Utilizacion de sinonimos
+CREATE SYNONYM cr_precio FOR cr_tarifa;
+
+SELECT *
+FROM cr_precio;
