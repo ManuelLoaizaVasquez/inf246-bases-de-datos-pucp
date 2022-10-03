@@ -47,8 +47,6 @@ FROM user_tab_comments;
 SELECT *
 FROM user_col_comments;
 
--- 2.4 Crear una tabla a partir de una seleccion de datos
-
 -- 2.5 Utilizacion de sinonimos
 
 CREATE SYNONYM cr_precio FOR cr_tarifa;
@@ -117,3 +115,10 @@ FROM cr_habitacion;
 
 DROP SEQUENCE numeros;
 
+-- 2.4 Crear una tabla a partir de una seleccion de datos
+
+CREATE TABLE cr_copia_habitacion AS
+SELECT * FROM cr_habitacion;
+
+CREATE TABLE cr_estructura_habitacion AS
+SELECT * FROM cr_habitacion WHERE 1 = 2;
