@@ -20,3 +20,17 @@ CREATE TABLE cr_dormitorio(
 ALTER TABLE cr_dormitorio
 ADD CONSTRAINT pk_cr_dormitorio PRIMARY KEY(id_hotel, numero);
 
+ALTER TABLE cr_tipo_habitacion
+ADD CONSTRAINT pk_cr_tipo_habitacion PRIMARY KEY(id_tipo_habitacion);
+
+-- 8.2 La clave extranjera
+CREATE TABLE cr_dormitorio (
+  id_habitacion INTEGER PRIMARY KEY,
+  id_hotel INTEGER,
+  id_tipo_habitacion INTEGER,
+  numero VARCHAR2(6),
+  comentario VARCHAR2(400),
+  CONSTRAINT fk_cr_tipo_habitacion FOREIGN KEY (id_tipo_habitacion)
+  REFERENCES cr_tipo_habitacion (id_tipo_habitacion)
+);
+
