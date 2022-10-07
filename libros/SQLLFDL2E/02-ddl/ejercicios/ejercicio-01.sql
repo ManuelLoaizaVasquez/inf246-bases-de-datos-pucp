@@ -1,6 +1,6 @@
 -- Primer ejercicio
 CREATE TABLE cr_pelicula (
-  id_pelicular INTEGER PRIMARY KEY,
+  id_pelicula INTEGER PRIMARY KEY,
   titulo VARCHAR2(100),
   genero VARCHAR2(100),
   sinopsis VARCHAR2(1000),
