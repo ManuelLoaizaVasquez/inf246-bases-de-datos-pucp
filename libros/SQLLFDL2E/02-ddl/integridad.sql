@@ -51,3 +51,16 @@ MODIFY id_tipo_habitacion DEFAULT 3;
 ALTER TABLE cr_dormitorio
 ADD vista VARCHAR2(20) DEFAULT 'Mar';
 
+-- 8.5 La restriccion de unicidad UNIQUE
+ALTER TABLE cr_hotel
+MODIFY nombre UNIQUE;
+
+-- 8.6 La restriccion de comprobacion CHECK
+CREATE TABLE cr_dormitorio (
+  id_habitacion INTEGER PRIMARY KEY,
+  id_hotel INTEGER
+  CHECK(VALUE BETWEEN 1 AND 999),
+  id_tipo_habitacion INTEGER,
+  numero VARCHAR2(6),
+  comentario VARCHAR2(400)
+);
