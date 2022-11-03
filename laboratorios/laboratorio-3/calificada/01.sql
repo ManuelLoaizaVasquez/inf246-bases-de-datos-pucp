@@ -1,4 +1,4 @@
-SET serveroutput ON;
+SET SERVEROUTPUT ON;
 
 -- Pregunta 1
 -- Se solicita desarrollar un subprograma que calcule la cantidad de pedidos
@@ -26,13 +26,10 @@ END;
 
 DECLARE
     cantidad_pedidos  NUMBER;
-    documento_cliente VARCHAR2(15);
-    fecha_inicio      DATE;
-    fecha_fin         DATE;
+    documento_cliente VARCHAR2(15) := '42525748';
+    fecha_inicio      DATE := TO_DATE ( '15-03-2022', 'dd-mm-yyyy' );
+    fecha_fin         DATE := TO_DATE ( '15-06-2022', 'dd-mm-yyyy' );
 BEGIN
-    documento_cliente := '42525748';
-    fecha_inicio := TO_DATE ( '15-03-2022', 'dd-mm-yyyy' );
-    fecha_fin := TO_DATE ( '15-06-2022', 'dd-mm-yyyy' );
     cantidad_pedidos := contar_pedidos_registrados(documento_cliente, fecha_inicio, fecha_fin);
     dbms_output.put_line('Hay '
                          || cantidad_pedidos
