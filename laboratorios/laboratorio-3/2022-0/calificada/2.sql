@@ -3,13 +3,17 @@ SET SERVEROUTPUT ON;
 CREATE OR REPLACE PROCEDURE pa_reporte_banco (
     nombre_banco VARCHAR2
 ) IS
+
     nombre_banco_bd VARCHAR2(100);
     CURSOR pagos (
         nombre_banco VARCHAR2
     ) IS
     SELECT
         upper(u.ap_paterno)
-        || decode(u.ap_materno, NULL, '', ' ' || upper(u.ap_materno))
+        || decode(u.ap_materno,
+                  NULL,
+                  '',
+                  ' ' || upper(u.ap_materno))
         || ', '
         || u.nombre  AS nombre,
         p.monto      AS monto,
@@ -28,7 +32,9 @@ CREATE OR REPLACE PROCEDURE pa_reporte_banco (
     bank_not_found EXCEPTION;
 BEGIN
     -- Validamos que el banco exista.
-    SELECT DISTINCT c.banco INTO nombre_banco_bd
+    SELECT DISTINCT
+        c.banco
+    INTO nombre_banco_bd
     FROM
         sp_cuenta c
     WHERE
